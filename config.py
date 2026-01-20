@@ -27,29 +27,10 @@ def my_config():
     fix_encoder = False
     finetune = False
     support_factor = 0.9 # 0.9 for ntu60, 0.4 for ntu120, 1.0 for pku #useless
-    weight_path = '/media/zzf/ljn/wsx/output/weight_split_12/split_12_kl_checkpoint_des_support_factor0.9_lr0.05_0.577223539352417.pt' # only using when set fix_encoder/finetune, copy from SMIE
-    # weight_path = '/media/zzf/ljn/wsx/output/weight/split_1_encoder_learnable_0.8235795497894287.pt' # only using when set fix_encoder/finetune, copy from SMIE
-    # weight_path = '/media/zzf/ljn/wsx/PGFA/PGFA-main/output/learnable_weight/split_1_learnable_kl_des_support_factor0.9_lr0.05.pt' # only using when set fix_encoder/finetune, copy from SMIE
-    # weight_path = '/media/zzf/ljn/wsx/PGFA/PGFA-main/output/weight/checkpoint/split_1_encoder_learnable_0.8235795497894287.pt.pt'
-    # log_path = '/media/zzf/ljn/wsx/output/weight_log_split_12/split_{}_{}_checkpoint_des_support_factor{}_lr{}.log'.format(split,loss_type,support_factor,lr)
-    # log_path = '/media/zzf/ljn/wsx/output/weight_log_split_12/test_w/o_diffusion.log'.format(split,loss_type,support_factor,lr)
-    log_path='weight_log/train_all_checkpoints_split_12.log'
-    # log_path = './output/weight_log/split_{}_{}_learnable_des_support_factor{}_lr{}.log'.format(split,loss_type,support_factor,lr)
-    # log_path = './weight_log/split_{}_{}_checkpoint_des_support_factor{}_lr{}.log'.format(split,loss_type,support_factor,lr)
-    # log_path = './output/weight_log/learnable_test_all_checkpoint.log'
-    # log_path = './output/weight_log/train_mappin.log'
-    # log_path = './output/weight_log/train_prompt_learner.log'
-    # log_path = './output/weight_log/train_vae_diffusion_prompt_learner.log'
-    # log_path = './output/weight_log/train_vae_diffusion_prompt_learner_0.84.log'
-    # log_path = './output/weight_log/train_prompt_learner_ntx2.log'
-    # log_path = './output/log/split_{}_{}_DA_des_support_factor{}_lr{}.log'.format(split,loss_type,support_factor,lr)
-    # log_path = './output/log/sota_split10_des_DA_epoch100_lr{}_support_factor{}.log'.format(lr, support_factor)
-    # log_path='./output/VAE_model/best_model.log'
-    # log_path='./output/weight_log/test.log'
+    weight_path = ''
+    log_path=''
     # save_path = './output/VAE_model/best_vae.pt'
-    save_path = '/media/zzf/ljn/wsx/output/weight_split_12/split_12/split_{}_checkpoint_{}_des_support_factor{}_lr{}.pt'.format(split,loss_type,support_factor,lr)
-    # save_path = '/media/zzf/ljn/wsx/output/weight_split_12/train_vae_diffusion.pt'.format(split,loss_type,support_factor,lr)
-    # save_path = './output/model/split_{}_{}_DA_des_support_factor{}_lr{}.pt'.format(split,loss_type,support_factor,lr)
+  
     loss_mode = "step" # "step" or "cos"
     step = [50, 80]
     ############################## ST-GCN ###############################
@@ -193,14 +174,7 @@ def my_config():
     # train_label = "./data/zeroshot/"+dataset+"/split_"+split+"/seen_train_label.npy"
     # test_list = "./data/zeroshot/"+dataset+"/split_"+split+"/unseen_data.npy"
     # test_label = "./data/zeroshot/"+dataset+"/split_"+split+"/unseen_label.npy"
-    # train_list = "/media/zzf/ljn/wsx/split/data/" + dataset + "/split_12/split_" + split + "/seen_train_data.npy"
-    # train_label = "/media/zzf/ljn/wsx/split/data/"+dataset+"/split_12/split_"+split+"/seen_train_label.npy"
-    # test_list = "/media/zzf/ljn/wsx/split/data/"+dataset+"/split_12/split_"+split+"/unseen_data.npy"
-    # test_label = "/media/zzf/ljn/wsx/split/data/"+dataset+"/split_12/split_"+split+"/unseen_label.npy"
-    train_list = "/media/zzf/ljn/wsx/Data/split/ntu60/split_"+split+"/seen_train_data.npy"
-    train_label = "/media/zzf/ljn/wsx/Data/split/ntu60/split_"+split+"/seen_train_label.npy"
-    test_list = "/media/zzf/ljn/wsx/Data/split/ntu60/split_"+split+"/unseen_data.npy"
-    test_label = "/media/zzf/ljn/wsx/Data/split/ntu60/split_"+split+"/unseen_label.npy"
+    
     ############################ sota compare ############################
 
     sota_split = "5" # 5 or 12 or 10 or 24 
