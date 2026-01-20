@@ -1,0 +1,68 @@
+# 文本向量化元数据
+源文件: optimized_prompts.txt
+模型: all-mpnet-base-v2
+文本数量: 60
+向量维度: 768
+生成时间: 2025-12-24T07:32:40
+
+# 文本列表:
+0: "Drink water" refers to the act of taking in water by mouth to hydrate or quench thirst as a human action.
+1: "Eat meal/snack" is consuming food for sustenance, nourishment, or pleasure.
+2: "Brushing teeth" is the act of cleaning teeth and gums using a toothbrush and toothpaste for oral hygiene.
+3: "Brushing hair" involves using a brush or comb to groom and style hair.
+4: "Drop" involves a swift downward motion where the arms extend away from the body, releasing an object. In contrast to the controlled upward movement and close body alignment of 'Put on a hat/cap,' 'Drop' features a relaxed wrist and a downward trajectory.
+5: "Pickup" involves lifting or grasping an object with one's hands.
+6: "Throw" is the act of projecting an object through the air by using the hand or arm.
+7: "Sitting down" involves moving from a standing position to a seated position.
+8: "Standing up (from sitting position)" involves transitioning from a seated position to an upright position by pushing up with the legs.
+9: "Clapping" involves striking one's palms together to make a sound, typically as a form of applause or approval.
+10: "Reading" involves interpreting and understanding written or printed words and symbols.
+11: "Writing" involves using a pen, pencil, or other writing tool to create letters, words, or symbols on a surface such as paper or a screen.
+12: "Tear up paper" involves using one's hands to rip apart paper into smaller pieces.
+13: "Wear jacket" is the act of putting on a garment designed to cover the upper body and arms.
+14: "Take off jacket" involves removing a jacket or outer garment from one's body.
+15: "Wear a shoe" involves putting a shoe onto one's foot for protection or fashion purposes.
+16: "Take off a shoe" involves removing a shoe from one's foot using one's hands.
+17: "Wear on glasses" involves putting eyeglasses or spectacles on one's face to correct vision or protect the eyes.
+18: "Take off glasses" involves removing eyeglasses from one's face with one's hands.
+19: "Put on a hat/cap" involves lifting both arms upward to place headwear directly onto the head, characterized by an upward motion and a forward lean, contrasting with the arm extension and upward gaze typical in taking a selfie.
+20: "Take off a hat/cap" involves removing a piece of headwear from one's head, typically by lifting or pulling it off.
+21: "Cheer up" involves trying to make oneself or someone else feel more positive or happy.
+22: "Hand waving" is a gesture involving moving one's hand or hands to signal, greet, or draw attention.
+23: "Kicking something" is a human action that involves striking an object with the foot.
+24: "Reach into pocket" is the act of extending one's hand into a pocket to retrieve an item or to adjust the pocket contents.
+25: "Hopping (one foot jumping)" is a human action that involves jumping repeatedly on one foot.
+26: "Jumping up" involves leaping upward from a standing position as part of physical training.
+27: "Make a phone call/Answer phone" involves using a phone to either initiate or receive a phone conversation.
+28: "Playing with phone/tablet" involves manipulating electronic devices through various interactions such as tapping, swiping, or scrolling.
+29: "Typing on a keyboard" is the act of pressing keys on a keyboard to input information or commands into a computer or other electronic device.
+30: "Pointing to something with finger" involves extending the arm and using the finger to indicate or draw attention to a specific object or location.
+31: "Taking a selfie" involves raising one arm with a camera towards the face, often with a smile or pose, while maintaining a stable posture. Unlike 'Drop', this action emphasizes upward arm movement and the interaction with a camera device.
+32: "Checking time (from watch)" involves looking at a wristwatch or other timekeeping device to determine the current time.
+33: "Rubbing two hands together" involves moving one's hands back and forth against each other, often for warmth.
+34: "Nod headbow" involves lowering one's head briefly in a sign of respect, greeting, or acknowledgment.
+35: "Shake head" is moving the head from side to side in a rapid or deliberate manner, often to indicate disagreement.
+36: "Wiping face" involves using a cloth or one's hands to remove dirt, sweat, or moisture from one's face.
+37: "Salute" is a gesture of respect or greeting, typically performed by raising one's hand to the forehead or brim of a hat.
+38: "Putting the palms together" is the act of pressing one's hands together, often as a sign of respect, greeting, or prayer.
+39: "Crossing hands in front (saying stop)" is a gesture where one crosses their arms in front of their body and says "stop".
+40: "Sneeze/cough" is the involuntary or deliberate act of expelling air and sometimes mucus from the nose and mouth, typically due to illness or irritation.
+41: "Staggering" is the unsteady movement or swaying of the body, usually caused by intoxication, dizziness, or fatigue.
+42: "Falling" is the sudden loss of balance resulting in a person dropping or collapsing to the ground or a lower surface.
+43: "Touching head (headache)" involves placing one's hands on the head to alleviate pain or discomfort in the head or neck area.
+44: "Touching chest (stomachache/heart pain)" is a human action that involves placing a hand on the chest to alleviate discomfort or pain in the chest area.
+45: "Touching back (backache)" involves placing one's hands on the back to alleviate or investigate pain, discomfort, or tension in the back.
+46: "Touching neck (neckache)" refers to the action of pressing or rubbing the neck with one's hands, often to relieve pain or discomfort in the neck area.
+47: "Nausea or vomiting" involves a distinct motion sequence, often characterized by the body bending forward, clutching the abdomen, and rapid, involuntary contractions as stomach contents are expelled, contrasting with the downward motion and release associated with a 'Drop'.
+48: "Using a fan (with hand or paper) to feel warm" involves creating airflow with a handheld or paper fan for the purpose of cooling down.
+49: "Punching/Slapping other person" is the act of striking another person with one's fist or open hand, respectively, typically for physical harm or aggression.
+50: "Kicking other person" involves striking another person with one's foot, often for physical harm or aggression.
+51: "Pushing other person" involves applying force to another person with one's body, typically with the intent to move or manipulate them.
+52: "Patting on back of other person" is the act of lightly striking or tapping another person's back with one's hand.
+53: "Pointing finger at the other person" involves extending one's finger towards another person, typically to indicate something or express disapproval.
+54: "Hugging other person" involves embracing another person with one's arms, often as a gesture of affection or comfort.
+55: "Giving something to other person" involves transferring an object or item to another person, typically as a gift or as part of an exchange.
+56: "Touching other person's pocket" involves coming into contact with or manipulating the pocket of another person's clothing.
+57: "Handshaking" involves greeting another person by clasping and shaking their hand, typically as a gesture of respect or friendliness.
+58: "Walking towards each other" is the act of moving one's body towards another person while standing or walking.
+59: "Walking apart from each other" involves moving away from another person while standing or walking.

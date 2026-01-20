@@ -1,0 +1,217 @@
+import os
+from sacred import Experiment
+
+ex = Experiment("baseline", save_git_info=False)
+ 
+@ex.config
+def my_config():
+    track = "main" # main or sota
+    # split = '12_16'#start35
+    split = '12'#start35
+    dataset = "ntu60" # ntu60: split 1-3, sota_split 5,12; ntu120: split 4-6, sota_split 10,24; pku: split 7-9
+    lr = 0.05 # 0.05 for ntu60 and pku, 0.005 for ntu120
+    # lr = 0.03 # 0.05 for ntu60 and pku, 0.005 for ntu120
+    margin = 0.1
+    weight_decay = 0.0005
+    # weight_decay= 0.0001
+    # epoch_num = 50
+    epoch_num=50
+    # epoch_num = 300
+    batch_size = 128 #128
+    loss_type = "kl"
+    # loss_type = "optimized_kl"
+    alpha = 1
+    beta = 1
+    m = 1
+    DA = False # DA means using our prototype-guided text feature alignment
+    fix_encoder = False
+    finetune = False
+    support_factor = 0.9 # 0.9 for ntu60, 0.4 for ntu120, 1.0 for pku #useless
+    weight_path = '/media/zzf/ljn/wsx/output/weight_split_12/split_12_kl_checkpoint_des_support_factor0.9_lr0.05_0.577223539352417.pt' # only using when set fix_encoder/finetune, copy from SMIE
+    # weight_path = '/media/zzf/ljn/wsx/output/weight/split_1_encoder_learnable_0.8235795497894287.pt' # only using when set fix_encoder/finetune, copy from SMIE
+    # weight_path = '/media/zzf/ljn/wsx/PGFA/PGFA-main/output/learnable_weight/split_1_learnable_kl_des_support_factor0.9_lr0.05.pt' # only using when set fix_encoder/finetune, copy from SMIE
+    # weight_path = '/media/zzf/ljn/wsx/PGFA/PGFA-main/output/weight/checkpoint/split_1_encoder_learnable_0.8235795497894287.pt.pt'
+    # log_path = '/media/zzf/ljn/wsx/output/weight_log_split_12/split_{}_{}_checkpoint_des_support_factor{}_lr{}.log'.format(split,loss_type,support_factor,lr)
+    # log_path = '/media/zzf/ljn/wsx/output/weight_log_split_12/test_w/o_diffusion.log'.format(split,loss_type,support_factor,lr)
+    log_path='weight_log/train_all_checkpoints_split_12.log'
+    # log_path = './output/weight_log/split_{}_{}_learnable_des_support_factor{}_lr{}.log'.format(split,loss_type,support_factor,lr)
+    # log_path = './weight_log/split_{}_{}_checkpoint_des_support_factor{}_lr{}.log'.format(split,loss_type,support_factor,lr)
+    # log_path = './output/weight_log/learnable_test_all_checkpoint.log'
+    # log_path = './output/weight_log/train_mappin.log'
+    # log_path = './output/weight_log/train_prompt_learner.log'
+    # log_path = './output/weight_log/train_vae_diffusion_prompt_learner.log'
+    # log_path = './output/weight_log/train_vae_diffusion_prompt_learner_0.84.log'
+    # log_path = './output/weight_log/train_prompt_learner_ntx2.log'
+    # log_path = './output/log/split_{}_{}_DA_des_support_factor{}_lr{}.log'.format(split,loss_type,support_factor,lr)
+    # log_path = './output/log/sota_split10_des_DA_epoch100_lr{}_support_factor{}.log'.format(lr, support_factor)
+    # log_path='./output/VAE_model/best_model.log'
+    # log_path='./output/weight_log/test.log'
+    # save_path = './output/VAE_model/best_vae.pt'
+    save_path = '/media/zzf/ljn/wsx/output/weight_split_12/split_12/split_{}_checkpoint_{}_des_support_factor{}_lr{}.pt'.format(split,loss_type,support_factor,lr)
+    # save_path = '/media/zzf/ljn/wsx/output/weight_split_12/train_vae_diffusion.pt'.format(split,loss_type,support_factor,lr)
+    # save_path = './output/model/split_{}_{}_DA_des_support_factor{}_lr{}.pt'.format(split,loss_type,support_factor,lr)
+    loss_mode = "step" # "step" or "cos"
+    step = [50, 80]
+    ############################## ST-GCN ###############################
+    in_channels = 3
+    hidden_channels = 16
+    hidden_dim = 256
+    dropout = 0.5
+    graph_args = {
+    "layout" : 'ntu-rgb+d',
+    "strategy" : 'spatial'
+    }
+    edge_importance_weighting = True
+    ############################# downstream #############################
+
+    # 从55个数字中每个都创建一个新的列表
+    split_1_0 = [4, 19, 31, 47, 51, 0]
+    split_1_1 = [4, 19, 31, 47, 51, 1]
+    split_1_2 = [4, 19, 31, 47, 51, 2]
+    split_1_3 = [4, 19, 31, 47, 51, 3]
+    split_1_5 = [4, 19, 31, 47, 51, 5]
+    split_1_6 = [4, 19, 31, 47, 51, 6]
+    split_1_7 = [4, 19, 31, 47, 51, 7]
+    split_1_8 = [4, 19, 31, 47, 51, 8]
+    split_1_9 = [4, 19, 31, 47, 51, 9]
+    split_1_10 = [4, 19, 31, 47, 51, 10]
+    split_1_11 = [4, 19, 31, 47, 51, 11]
+    split_1_12 = [4, 19, 31, 47, 51, 12]
+    split_1_13 = [4, 19, 31, 47, 51, 13]
+    split_1_14 = [4, 19, 31, 47, 51, 14]
+    split_1_15 = [4, 19, 31, 47, 51, 15]
+    split_1_16 = [4, 19, 31, 47, 51, 16]
+    split_1_17 = [4, 19, 31, 47, 51, 17]
+    split_1_18 = [4, 19, 31, 47, 51, 18]
+    split_1_20 = [4, 19, 31, 47, 51, 20]
+    split_1_21 = [4, 19, 31, 47, 51, 21]
+    split_1_22 = [4, 19, 31, 47, 51, 22]
+    split_1_23 = [4, 19, 31, 47, 51, 23]
+    split_1_24 = [4, 19, 31, 47, 51, 24]
+    split_1_25 = [4, 19, 31, 47, 51, 25]
+    split_1_26 = [4, 19, 31, 47, 51, 26]
+    split_1_27 = [4, 19, 31, 47, 51, 27]
+    split_1_28 = [4, 19, 31, 47, 51, 28]
+    split_1_29 = [4, 19, 31, 47, 51, 29]
+    split_1_30 = [4, 19, 31, 47, 51, 30]
+    split_1_32 = [4, 19, 31, 47, 51, 32]
+    split_1_33 = [4, 19, 31, 47, 51, 33]
+    split_1_34 = [4, 19, 31, 47, 51, 34]
+    split_1_35 = [4, 19, 31, 47, 51, 35]
+    split_1_36 = [4, 19, 31, 47, 51, 36]
+    split_1_37 = [4, 19, 31, 47, 51, 37]
+    split_1_38 = [4, 19, 31, 47, 51, 38]
+    split_1_39 = [4, 19, 31, 47, 51, 39]
+    split_1_40 = [4, 19, 31, 47, 51, 40]
+    split_1_41 = [4, 19, 31, 47, 51, 41]
+    split_1_42 = [4, 19, 31, 47, 51, 42]
+    split_1_43 = [4, 19, 31, 47, 51, 43]
+    split_1_44 = [4, 19, 31, 47, 51, 44]
+    split_1_45 = [4, 19, 31, 47, 51, 45]
+    split_1_46 = [4, 19, 31, 47, 51, 46]
+    split_1_48 = [4, 19, 31, 47, 51, 48]
+    split_1_49 = [4, 19, 31, 47, 51, 49]
+    split_1_50 = [4, 19, 31, 47, 51, 50]
+    split_1_52 = [4, 19, 31, 47, 51, 52]
+    split_1_53 = [4, 19, 31, 47, 51, 53]
+    split_1_54 = [4, 19, 31, 47, 51, 54]
+    split_1_55 = [4, 19, 31, 47, 51, 55]
+    split_1_56 = [4, 19, 31, 47, 51, 56]
+    split_1_57 = [4, 19, 31, 47, 51, 57]
+    split_1_58 = [4, 19, 31, 47, 51, 58]
+    split_1_59 = [4, 19, 31, 47, 51, 59]
+    # split_12 = [3, 5, 9, 12, 15, 40, 42, 47, 51, 56, 58, 59]
+    split_12 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59]
+    split_12_0 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 0]
+    split_12_1 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 1]
+    split_12_2 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 2]
+    split_12_4 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 4]
+    split_12_5 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 5]
+    split_12_6 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 6]
+    split_12_8 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 8]
+    split_12_9 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 9]
+    split_12_10 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 10]
+    split_12_11 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 11]
+    split_12_12 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 12]
+    split_12_14 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 14]
+    split_12_15 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 15]
+    split_12_16 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 16]
+    split_12_17 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 17]
+    split_12_18 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 18]
+    split_12_20 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 20]
+    split_12_21 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 21]
+    split_12_23 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 23]
+    split_12_24 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 24]
+    split_12_25 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 25]
+    split_12_26 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 26]
+    split_12_27 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 27]
+    split_12_29 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 29]
+    split_12_30 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 30]
+    split_12_31 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 31]
+    split_12_32 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 32]
+    split_12_33 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 33]
+    split_12_35 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 35]
+    split_12_36 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 36]
+    split_12_37 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 37]
+    split_12_38 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 38]
+    split_12_39 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 39]
+    split_12_40 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 40]
+    split_12_42 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 42]
+    split_12_43 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 43]
+    split_12_44 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 44]
+    split_12_45 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 45]
+    split_12_46 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 46]
+    split_12_48 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 48]
+    split_12_49 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 49]
+    split_12_50 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 50]
+    split_12_51 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 51]
+    split_12_53 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 53]
+    split_12_54 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 54]
+    split_12_55 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 55]
+    split_12_57 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 57]
+    split_12_58 = [3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59, 58]
+
+    split_1=   [4, 19, 31, 47, 51]
+    split_2 = [12,29,32,44,59]
+    split_3 = [7,20,28,39,58]
+    split_4 = [3, 18, 26, 38, 41, 60, 87, 99, 102, 110]
+    split_5 = [5, 12, 14, 15, 17, 42, 67, 82, 100, 119]
+    split_6 = [6, 20, 27, 33, 42, 55, 71, 97, 104, 118]
+    split_7 = [1, 9, 20, 34, 50]
+    split_8 = [3, 14, 29, 31, 49]
+    split_9 = [2, 15, 39, 41, 43]
+    unseen_label = eval('split_'+split)
+    visual_size = 256
+    language_size = 768
+
+    max_frame = 50
+    # language_path = "./data/learnable_context.npy" # des best
+    language_path = "./data/language/"+dataset+"_des_embeddings.npy" # des best 0.8794981241226196
+     # des best
+    # language_path='prompt_embeddings.npy'#0.8794981241226196
+    # train_list = "./data/zeroshot/"+dataset+"/split_"+split+"/seen_train_data.npy"
+    # train_label = "./data/zeroshot/"+dataset+"/split_"+split+"/seen_train_label.npy"
+    # test_list = "./data/zeroshot/"+dataset+"/split_"+split+"/unseen_data.npy"
+    # test_label = "./data/zeroshot/"+dataset+"/split_"+split+"/unseen_label.npy"
+    # train_list = "/media/zzf/ljn/wsx/split/data/" + dataset + "/split_12/split_" + split + "/seen_train_data.npy"
+    # train_label = "/media/zzf/ljn/wsx/split/data/"+dataset+"/split_12/split_"+split+"/seen_train_label.npy"
+    # test_list = "/media/zzf/ljn/wsx/split/data/"+dataset+"/split_12/split_"+split+"/unseen_data.npy"
+    # test_label = "/media/zzf/ljn/wsx/split/data/"+dataset+"/split_12/split_"+split+"/unseen_label.npy"
+    train_list = "/media/zzf/ljn/wsx/Data/split/ntu60/split_"+split+"/seen_train_data.npy"
+    train_label = "/media/zzf/ljn/wsx/Data/split/ntu60/split_"+split+"/seen_train_label.npy"
+    test_list = "/media/zzf/ljn/wsx/Data/split/ntu60/split_"+split+"/unseen_data.npy"
+    test_label = "/media/zzf/ljn/wsx/Data/split/ntu60/split_"+split+"/unseen_label.npy"
+    ############################ sota compare ############################
+
+    sota_split = "5" # 5 or 12 or 10 or 24 
+    model_choice_for_sota = 'shift-gcn' # shift-gcn or st-gcn
+    unseen_label_5 = [10,11,19,26,56]
+    unseen_label_12 = [3,5,9,12,15,40,42,47,51,56,58,59]
+    unseen_label_10 = [4,13,37,43,49,65,88,95,99,106]
+    unseen_label_24 = [5,9,11,16,18,20,22,29,35,39,45,49,59,68,70,81,84,87,93,94,104,113,114,119]
+    sota_unseen = eval('unseen_label_'+sota_split)
+    sota_train_list = "./data/zeroshot/"+dataset+"/unseen_label_"+sota_split+"/seen_train_data.npy"
+    sota_train_label = "./data/zeroshot/"+dataset+"/unseen_label_"+sota_split+"/seen_train_label.npy"
+    sota_test_list = "./data/zeroshot/"+dataset+"/unseen_label_"+sota_split+"/unseen_data.npy"
+    sota_test_label = "./data/zeroshot/"+dataset+"/unseen_label_"+sota_split+"/unseen_label.npy"
+# %%
