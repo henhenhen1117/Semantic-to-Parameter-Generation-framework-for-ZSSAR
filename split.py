@@ -54,8 +54,7 @@
 # split_8 = [3, 14, 29, 31, 49]
 # split_9 = [2, 15, 39, 41, 43]
 # split_12=[3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59]
-# root="/media/zzf/ljn/wsx/Data/split/"
-# root2="/media/zzf/ljn/wsx/zero-shot_data/sourcedata/"
+
 # train_path = root2+dataset+'_frame50/xsub/train_position.npy'
 # test_path = root2+dataset+'_frame50/xsub/val_position.npy'
 # train_label_path = root2+dataset+'_frame50/xsub/train_label.pkl'
@@ -122,18 +121,11 @@ import pickle
 from tqdm import tqdm
 import os
 
-dataset = "ntu60"
-root ="/media/zzf/ljn/wsx/Data/split/"
-root2 = "/media/zzf/ljn/wsx/zero-shot_data/sourcedata/"
+dataset = ""
+root =
+root2 = 
 
-# 基础分割
-# split_1 = [4, 19, 31, 47, 51]
-# split_12=[3,5,9,12,15,40,42,47,51,56,58,59]
-split_12=[3, 7, 13, 19, 22, 28, 34, 41, 47, 52, 56, 59]
-# root="/media/zzf/ljn/wsx/Data/split/"
-# remaining_numbers = [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21,
-#                      22, 23, 24, 25, 26, 27, 28, 29, 30, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-#                      41, 42, 43, 44, 45, 46, 48, 49, 50, 52, 53, 54, 55, 56, 57, 58, 59]
+
 remaining_numbers = [0, 1, 2, 4, 5, 6, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 20, 21, 23, 24, 25, 26,
                      27, 29, 30, 31, 32, 33, 35, 36, 37, 38, 39, 40, 42, 43, 44, 45, 46, 48, 49, 50, 51, 53, 54, 55, 57, 58]
 # 加载数据
@@ -153,16 +145,16 @@ test_data = np.load(test_path)
 
 print("开始处理48个分割方案...")
 
-# 处理55个分割方案
-for num in tqdm(remaining_numbers, desc="处理分割方案"):
+
+for num in tqdm(remaining_numbers, desc=):
     split_name = f"split_12_{num}"
     split_classes = split_12 + [num]
 
-    # 创建输出目录
+    
     split_dir = os.path.join(root, dataset, split_name)
     os.makedirs(split_dir, exist_ok=True)
 
-    # 定义输出路径
+   
     seen_train_data_path = os.path.join(split_dir, "seen_train_data.npy")
     seen_train_label_path = os.path.join(split_dir, "seen_train_label.npy")
     seen_test_data_path = os.path.join(split_dir, "seen_test_data.npy")
@@ -200,5 +192,3 @@ for num in tqdm(remaining_numbers, desc="处理分割方案"):
     np.save(seen_test_label_path, np.array(seen_test_label))
     np.save(unseen_data_path, np.array(unseen_data))
     np.save(unseen_label_path, np.array(unseen_label))
-
-print("48个分割方案处理完成！")
