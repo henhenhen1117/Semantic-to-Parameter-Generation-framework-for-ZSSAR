@@ -11,5 +11,5 @@
 <img width="7164" height="5941" alt="alignment_debug_epoch0_dist0 343" src="alignment_debug_epoch0_dist0.343.png" />
 
 ## Tradition Method:
-<img width="7164" height="5940" alt="alignment_debug_epoch0_ori_dist0 550" src="https://github.com/user-attachments/assets/f99078bb-dbaa-441f-b486-e6e1b8a9b53c" />
+<img width="7164" height="5940" alt="alignment_debug_epoch0_ori_dist0 550" src="alignment_debug_epoch0_ori_dist0.550.png" />
 
