@@ -6,4 +6,4 @@
 
 
 
-**The redrawn t-SNE visualization is shown below, where SPG presents clearer clustering and better cross-modal alignment than the traditional method.**
+## The redrawn t-SNE visualization is shown below, where SPG presents clearer clustering and better cross-modal alignment than the traditional method.**
