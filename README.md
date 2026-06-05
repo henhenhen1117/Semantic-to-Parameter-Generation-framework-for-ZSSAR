@@ -8,8 +8,8 @@
 
 ## The redrawn t-SNE visualization is shown below, where SPG presents clearer clustering and better cross-modal alignment than the traditional method.
 ## Our Method:SPG
-<img width="5000" height="2500" alt="alignment_debug_epoch0_dist0 343" src="alignment_debug_epoch0_dist0.343.png" />
+<img width="3500" height="1500" alt="alignment_debug_epoch0_dist0 343" src="alignment_debug_epoch0_dist0.343.png" />
 
 ## Tradition Method:
-<img width="5000" height="2500" alt="alignment_debug_epoch0_ori_dist0 550" src="alignment_debug_epoch0_ori_dist0.550.png" />
+<img width="3500" height="1500" alt="alignment_debug_epoch0_ori_dist0 550" src="alignment_debug_epoch0_ori_dist0.550.png" />
 
